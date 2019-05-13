@@ -1,0 +1,53 @@
+# No Top
+__________________________________________________________________________________________________
+avg_pool (AveragePooling2D)     (None, 1, 1, 2048)   0           activation_98[0][0]              
+==================================================================================================
+
+# Top
+__________________________________________________________________________________________________
+avg_pool (AveragePooling2D)     (None, 1, 1, 2048)   0           activation_49[0][0]              
+__________________________________________________________________________________________________
+flatten_1 (Flatten)             (None, 2048)         0           avg_pool[0][0]                   
+__________________________________________________________________________________________________
+fc1000 (Dense)                  (None, 1000)         2049000     flatten_1[0][0]                  
+==================================================================================================
+
+{'name': 'avg_pool',
+   'class_name': 'AveragePooling2D',
+   'config': {'name': 'avg_pool',
+    'trainable': True,
+    'pool_size': (7, 7),
+    'padding': 'valid',
+    'strides': (7, 7),
+    'data_format': 'channels_last'},
+   'inbound_nodes': [[['activation_49', 0, 0, {}]]]},
+  {'name': 'flatten_1',
+   'class_name': 'Flatten',
+   'config': {'name': 'flatten_1', 'trainable': True},
+   'inbound_nodes': [[['avg_pool', 0, 0, {}]]]},
+  {'name': 'fc1000',
+   'class_name': 'Dense',
+   'config': {'name': 'fc1000',
+    'trainable': True,
+    'units': 1000,
+    'activation': 'softmax',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['flatten_1', 0, 0, {}]]]}],
+ 'input_layers': [['input_1', 0, 0]],
+ 'output_layers': [['fc1000', 0, 0]]}
+
+
+
+
+

@@ -1,13 +1,5 @@
 # Top
 
-conv_dw_13_bn (BatchNormaliz (None, 7, 7, 1024)        4096      
-_________________________________________________________________
-conv_dw_13_relu (Activation) (None, 7, 7, 1024)        0         
-_________________________________________________________________
-conv_pw_13 (Conv2D)          (None, 7, 7, 1024)        1048576   
-_________________________________________________________________
-conv_pw_13_bn (BatchNormaliz (None, 7, 7, 1024)        4096      
-_________________________________________________________________
 conv_pw_13_relu (Activation) (None, 7, 7, 1024)        0         
 _________________________________________________________________
 global_average_pooling2d_1 ( (None, 1024)              0         
@@ -21,15 +13,87 @@ _________________________________________________________________
 act_softmax (Activation)     (None, 1, 1, 1000)        0         
 _________________________________________________________________
 reshape_2 (Reshape)          (None, 1000)              0         
+=================================================================
 
-# No Top
+*** 
+  {'name': 'global_average_pooling2d_3',
+   'class_name': 'GlobalAveragePooling2D',
+   'config': {'name': 'global_average_pooling2d_3',
+    'trainable': True,
+    'data_format': 'channels_last'},
+   'inbound_nodes': [[['conv_pw_13_relu', 0, 0, {}]]]},
+  {'name': 'reshape_1',
+   'class_name': 'Reshape',
+   'config': {'name': 'reshape_1',
+    'trainable': True,
+    'target_shape': (1, 1, 1024)},
+   'inbound_nodes': [[['global_average_pooling2d_3', 0, 0, {}]]]},
+  {'name': 'dropout',
+   'class_name': 'Dropout',
+   'config': {'name': 'dropout',
+    'trainable': True,
+    'rate': 0.001,
+    'noise_shape': None,
+    'seed': None},
+   'inbound_nodes': [[['reshape_1', 0, 0, {}]]]},
+  {'name': 'conv_preds',
+   'class_name': 'Conv2D',
+   'config': {'name': 'conv_preds',
+    'trainable': True,
+    'filters': 1000,
+    'kernel_size': (1, 1),
+    'strides': (1, 1),
+    'padding': 'same',
+    'data_format': 'channels_last',
+    'dilation_rate': (1, 1),
+    'activation': 'linear',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['dropout', 0, 0, {}]]]},
+  {'name': 'act_softmax',
+   'class_name': 'Activation',
+   'config': {'name': 'act_softmax',
+    'trainable': True,
+    'activation': 'softmax'},
+   'inbound_nodes': [[['conv_preds', 0, 0, {}]]]},
+  {'name': 'reshape_2',
+   'class_name': 'Reshape',
+   'config': {'name': 'reshape_2', 'trainable': True, 'target_shape': (1000,)},
+   'inbound_nodes': [[['act_softmax', 0, 0, {}]]]}],
+ 'input_layers': [['input_3', 0, 0]],
+ 'output_layers': [['reshape_2', 0, 0]]'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['dropout', 0, 0, {}]]]},
+  {'name': 'act_softmax',
+   'class_name': 'Activation',
+   'config': {'name': 'act_softmax',
+    'trainable': True,
+    'activation': 'softmax'},
+   'inbound_nodes': [[['conv_preds', 0, 0, {}]]]},
+  {'name': 'reshape_2',
+   'class_name': 'Reshape',
+   'config': {'name': 'reshape_2', 'trainable': True, 'target_shape': (1000,)},
+   'inbound_nodes': [[['act_softmax', 0, 0, {}]]]}],
+ 'input_layers': [['input_3', 0, 0]],
+ 'output_layers': [['reshape_2', 0, 0]]}
+***
 
-conv_dw_13_bn (BatchNormaliz (None, 7, 7, 1024)        4096      
-_________________________________________________________________
-conv_dw_13_relu (Activation) (None, 7, 7, 1024)        0         
-_________________________________________________________________
-conv_pw_13 (Conv2D)          (None, 7, 7, 1024)        1048576   
-_________________________________________________________________
-conv_pw_13_bn (BatchNormaliz (None, 7, 7, 1024)        4096      
-_________________________________________________________________
+
+No Top
+
 conv_pw_13_relu (Activation) (None, 7, 7, 1024)        0         
+=================================================================
+
+
