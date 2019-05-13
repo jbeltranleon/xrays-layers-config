@@ -1,0 +1,45 @@
+# No Top
+__________________________________________________________________________________________________
+out_relu (Activation)           (None, 7, 7, 1280)   0           Conv_1_bn[0][0]                  
+==================================================================================================
+
+# Top
+__________________________________________________________________________________________________
+out_relu (Activation)           (None, 7, 7, 1280)   0           Conv_1_bn[0][0]                  
+__________________________________________________________________________________________________
+global_average_pooling2d_1 (Glo (None, 1280)         0           out_relu[0][0]                   
+__________________________________________________________________________________________________
+Logits (Dense)                  (None, 1000)         1281000     global_average_pooling2d_1[0][0] 
+==================================================================================================
+
+  {'name': 'out_relu',
+   'class_name': 'Activation',
+   'config': {'name': 'out_relu', 'trainable': True, 'activation': 'relu6'},
+   'inbound_nodes': [[['Conv_1_bn', 0, 0, {}]]]},
+  {'name': 'global_average_pooling2d_1',
+   'class_name': 'GlobalAveragePooling2D',
+   'config': {'name': 'global_average_pooling2d_1',
+    'trainable': True,
+    'data_format': 'channels_last'},
+   'inbound_nodes': [[['out_relu', 0, 0, {}]]]},
+  {'name': 'Logits',
+   'class_name': 'Dense',
+   'config': {'name': 'Logits',
+    'trainable': True,
+    'units': 1000,
+    'activation': 'softmax',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['global_average_pooling2d_1', 0, 0, {}]]]}],
+ 'input_layers': [['input_1', 0, 0]],
+ 'output_layers': [['Logits', 0, 0]]}
