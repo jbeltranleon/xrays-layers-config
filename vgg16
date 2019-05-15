@@ -1,8 +1,91 @@
 # No Top
 _________________________________________________________________
-dropout_2 (Dropout)          (None, 512)               0         
-_________________________________________________________________
-dense_2 (Dense)              (None, 14)                7182      
+block5_pool (MaxPooling2D)   (None, 7, 7, 512)         0         
 =================================================================
 
 # Top
+
+_________________________________________________________________
+block5_pool (MaxPooling2D)   (None, 7, 7, 512)         0         
+_________________________________________________________________
+flatten (Flatten)            (None, 25088)             0         
+_________________________________________________________________
+fc1 (Dense)                  (None, 4096)              102764544 
+_________________________________________________________________
+fc2 (Dense)                  (None, 4096)              16781312  
+_________________________________________________________________
+predictions (Dense)          (None, 1000)              4097000   
+=================================================================
+
+{'name': 'block5_pool',
+   'class_name': 'MaxPooling2D',
+   'config': {'name': 'block5_pool',
+    'trainable': True,
+    'pool_size': (2, 2),
+    'padding': 'valid',
+    'strides': (2, 2),
+    'data_format': 'channels_last'},
+   'inbound_nodes': [[['block5_conv3', 0, 0, {}]]]},
+  {'name': 'flatten',
+   'class_name': 'Flatten',
+   'config': {'name': 'flatten', 'trainable': True},
+   'inbound_nodes': [[['block5_pool', 0, 0, {}]]]},
+  {'name': 'fc1',
+   'class_name': 'Dense',
+   'config': {'name': 'fc1',
+    'trainable': True,
+    'units': 4096,
+    'activation': 'relu',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['flatten', 0, 0, {}]]]},
+  {'name': 'fc2',
+   'class_name': 'Dense',
+   'config': {'name': 'fc2',
+    'trainable': True,
+    'units': 4096,
+    'activation': 'relu',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['fc1', 0, 0, {}]]]},
+  {'name': 'predictions',
+   'class_name': 'Dense',
+   'config': {'name': 'predictions',
+    'trainable': True,
+    'units': 1000,
+    'activation': 'softmax',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['fc2', 0, 0, {}]]]}],
+ 'input_layers': [['input_1', 0, 0]],
+ 'output_layers': [['predictions', 0, 0]]}
