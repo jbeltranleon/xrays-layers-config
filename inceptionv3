@@ -1,0 +1,56 @@
+# No Top
+
+__________________________________________________________________________________________________
+mixed10 (Concatenate)           (None, 5, 5, 2048)   0           activation_180[0][0]             
+                                                                 mixed9_1[0][0]                   
+                                                                 concatenate_4[0][0]              
+                                                                 activation_188[0][0]             
+==================================================================================================
+
+# Top
+
+__________________________________________________________________________________________________
+mixed10 (Concatenate)           (None, 5, 5, 2048)   0           activation_86[0][0]              
+                                                                 mixed9_1[0][0]                   
+                                                                 concatenate_2[0][0]              
+                                                                 activation_94[0][0]              
+__________________________________________________________________________________________________
+avg_pool (GlobalAveragePooling2 (None, 2048)         0           mixed10[0][0]                    
+__________________________________________________________________________________________________
+predictions (Dense)             (None, 1000)         2049000     avg_pool[0][0]                   
+==================================================================================================
+
+{'name': 'mixed10',
+   'class_name': 'Concatenate',
+   'config': {'name': 'mixed10', 'trainable': True, 'axis': 3},
+   'inbound_nodes': [[['activation_86', 0, 0, {}],
+     ['mixed9_1', 0, 0, {}],
+     ['concatenate_2', 0, 0, {}],
+     ['activation_94', 0, 0, {}]]]},
+  {'name': 'avg_pool',
+   'class_name': 'GlobalAveragePooling2D',
+   'config': {'name': 'avg_pool',
+    'trainable': True,
+    'data_format': 'channels_last'},
+   'inbound_nodes': [[['mixed10', 0, 0, {}]]]},
+  {'name': 'predictions',
+   'class_name': 'Dense',
+   'config': {'name': 'predictions',
+    'trainable': True,
+    'units': 1000,
+    'activation': 'softmax',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['avg_pool', 0, 0, {}]]]}],
+ 'input_layers': [['input_1', 0, 0]],
+ 'output_layers': [['predictions', 0, 0]]}
