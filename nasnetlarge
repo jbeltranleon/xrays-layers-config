@@ -19,3 +19,17 @@ Total params: 88,949,818
 Trainable params: 88,753,150
 Non-trainable params: 196,668
 
+{'name': 'activation_260', 'class_name': 'Activation', 
+  'config': {'name': 'activation_260', 'trainable': True, 'activation': 'relu'}, 
+  'inbound_nodes': [[['normal_concat_18', 0, 0, {}]]]}, 
+  {'name': 'global_average_pooling2d_1', 'class_name': 'GlobalAveragePooling2D', 
+    'config': {'name': 'global_average_pooling2d_1', 'trainable': True, 'data_format': 'channels_last'}, 
+    'inbound_nodes': [[['activation_260', 0, 0, {}]]]}, 
+{'name': 'predictions', 'class_name': 'Dense', 
+  'config': {'name': 'predictions', 'trainable': True, 'units': 1000, 'activation': 'softmax', 
+    'use_bias': True, 'kernel_initializer': {'class_name': 'VarianceScaling', 
+      'config': {'scale': 1.0, 'mode': 'fan_avg', 'distribution': 'uniform', 'seed': None}}, 
+      'bias_initializer': {'class_name': 'Zeros', 'config': {}}, 'kernel_regularizer': None, 
+      'bias_regularizer': None, 'activity_regularizer': None, 'kernel_constraint': None, 'bias_constraint': None}, 
+      'inbound_nodes': [[['global_average_pooling2d_1', 0, 0, {}]]]}], 
+      'input_layers': [['input_1', 0, 0]], 'output_layers': [['predictions', 0, 0]]}
