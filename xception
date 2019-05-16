@@ -1,4 +1,53 @@
 # No Top
 
+block14_sepconv2_act (Activatio (None, 7, 7, 2048)   0           block14_sepconv2_bn[0][0]        
+==================================================================================================
+Total params: 20,861,480
+Trainable params: 20,806,952
+Non-trainable params: 54,528
 
 # Top
+
+block14_sepconv2_act (Activatio (None, 7, 7, 2048)   0           block14_sepconv2_bn[0][0]        
+__________________________________________________________________________________________________
+avg_pool (GlobalAveragePooling2 (None, 2048)         0           block14_sepconv2_act[0][0]       
+__________________________________________________________________________________________________
+predictions (Dense)             (None, 1000)         2049000     avg_pool[0][0]                   
+==================================================================================================
+Total params: 22,910,480
+Trainable params: 22,855,952
+Non-trainable params: 54,528
+
+ {'name': 'block14_sepconv2_act',
+   'class_name': 'Activation',
+   'config': {'name': 'block14_sepconv2_act',
+    'trainable': True,
+    'activation': 'relu'},
+   'inbound_nodes': [[['block14_sepconv2_bn', 0, 0, {}]]]},
+  {'name': 'avg_pool',
+   'class_name': 'GlobalAveragePooling2D',
+   'config': {'name': 'avg_pool',
+    'trainable': True,
+    'data_format': 'channels_last'},
+   'inbound_nodes': [[['block14_sepconv2_act', 0, 0, {}]]]},
+  {'name': 'predictions',
+   'class_name': 'Dense',
+   'config': {'name': 'predictions',
+    'trainable': True,
+    'units': 1000,
+    'activation': 'softmax',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['avg_pool', 0, 0, {}]]]}],
+ 'input_layers': [['input_1', 0, 0]],
+ 'output_layers': [['predictions', 0, 0]]}

@@ -1,3 +1,8 @@
+No Top
+
+conv_pw_13_relu (Activation) (None, 7, 7, 1024)        0         
+=================================================================
+
 # Top
 
 conv_pw_13_relu (Activation) (None, 7, 7, 1024)        0         
@@ -15,10 +20,15 @@ _________________________________________________________________
 reshape_2 (Reshape)          (None, 1000)              0         
 =================================================================
 
-*** 
-  {'name': 'global_average_pooling2d_3',
+{'name': 'conv_pw_13_relu',
+   'class_name': 'Activation',
+   'config': {'name': 'conv_pw_13_relu',
+    'trainable': True,
+    'activation': 'relu6'},
+   'inbound_nodes': [[['conv_pw_13_bn', 0, 0, {}]]]},
+  {'name': 'global_average_pooling2d_1',
    'class_name': 'GlobalAveragePooling2D',
-   'config': {'name': 'global_average_pooling2d_3',
+   'config': {'name': 'global_average_pooling2d_1',
     'trainable': True,
     'data_format': 'channels_last'},
    'inbound_nodes': [[['conv_pw_13_relu', 0, 0, {}]]]},
@@ -27,7 +37,7 @@ reshape_2 (Reshape)          (None, 1000)              0
    'config': {'name': 'reshape_1',
     'trainable': True,
     'target_shape': (1, 1, 1024)},
-   'inbound_nodes': [[['global_average_pooling2d_3', 0, 0, {}]]]},
+   'inbound_nodes': [[['global_average_pooling2d_1', 0, 0, {}]]]},
   {'name': 'dropout',
    'class_name': 'Dropout',
    'config': {'name': 'dropout',
@@ -70,30 +80,5 @@ reshape_2 (Reshape)          (None, 1000)              0
    'class_name': 'Reshape',
    'config': {'name': 'reshape_2', 'trainable': True, 'target_shape': (1000,)},
    'inbound_nodes': [[['act_softmax', 0, 0, {}]]]}],
- 'input_layers': [['input_3', 0, 0]],
- 'output_layers': [['reshape_2', 0, 0]]'bias_regularizer': None,
-    'activity_regularizer': None,
-    'kernel_constraint': None,
-    'bias_constraint': None},
-   'inbound_nodes': [[['dropout', 0, 0, {}]]]},
-  {'name': 'act_softmax',
-   'class_name': 'Activation',
-   'config': {'name': 'act_softmax',
-    'trainable': True,
-    'activation': 'softmax'},
-   'inbound_nodes': [[['conv_preds', 0, 0, {}]]]},
-  {'name': 'reshape_2',
-   'class_name': 'Reshape',
-   'config': {'name': 'reshape_2', 'trainable': True, 'target_shape': (1000,)},
-   'inbound_nodes': [[['act_softmax', 0, 0, {}]]]}],
- 'input_layers': [['input_3', 0, 0]],
+ 'input_layers': [['input_1', 0, 0]],
  'output_layers': [['reshape_2', 0, 0]]}
-***
-
-
-No Top
-
-conv_pw_13_relu (Activation) (None, 7, 7, 1024)        0         
-=================================================================
-
-
