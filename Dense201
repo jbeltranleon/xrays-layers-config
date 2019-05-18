@@ -1,0 +1,68 @@
+# No Top
+__________________________________________________________________________________________________
+bn (BatchNormalization)         (None, 7, 7, 1920)   7680        conv5_block32_concat[0][0]       
+==================================================================================================
+Total params: 18,321,984
+Trainable params: 18,092,928
+Non-trainable params: 229,056
+__________________________________________________________________________________________________
+
+# Top
+
+__________________________________________________________________________________________________
+bn (BatchNormalization)         (None, 7, 7, 1920)   7680        conv5_block32_concat[0][0]       
+__________________________________________________________________________________________________
+avg_pool (GlobalAveragePooling2 (None, 1920)         0           bn[0][0]                         
+__________________________________________________________________________________________________
+fc1000 (Dense)                  (None, 1000)         1921000     avg_pool[0][0]                   
+==================================================================================================
+Total params: 20,242,984
+Trainable params: 20,013,928
+Non-trainable params: 229,056
+__________________________________________________________________________________________________
+
+{'name': 'bn',
+   'class_name': 'BatchNormalization',
+   'config': {'name': 'bn',
+    'trainable': True,
+    'axis': 3,
+    'momentum': 0.99,
+    'epsilon': 1.001e-05,
+    'center': True,
+    'scale': True,
+    'beta_initializer': {'class_name': 'Zeros', 'config': {}},
+    'gamma_initializer': {'class_name': 'Ones', 'config': {}},
+    'moving_mean_initializer': {'class_name': 'Zeros', 'config': {}},
+    'moving_variance_initializer': {'class_name': 'Ones', 'config': {}},
+    'beta_regularizer': None,
+    'gamma_regularizer': None,
+    'beta_constraint': None,
+    'gamma_constraint': None},
+   'inbound_nodes': [[['conv5_block32_concat', 0, 0, {}]]]},
+  {'name': 'avg_pool',
+   'class_name': 'GlobalAveragePooling2D',
+   'config': {'name': 'avg_pool',
+    'trainable': True,
+    'data_format': 'channels_last'},
+   'inbound_nodes': [[['bn', 0, 0, {}]]]},
+  {'name': 'fc1000',
+   'class_name': 'Dense',
+   'config': {'name': 'fc1000',
+    'trainable': True,
+    'units': 1000,
+    'activation': 'softmax',
+    'use_bias': True,
+    'kernel_initializer': {'class_name': 'VarianceScaling',
+     'config': {'scale': 1.0,
+      'mode': 'fan_avg',
+      'distribution': 'uniform',
+      'seed': None}},
+    'bias_initializer': {'class_name': 'Zeros', 'config': {}},
+    'kernel_regularizer': None,
+    'bias_regularizer': None,
+    'activity_regularizer': None,
+    'kernel_constraint': None,
+    'bias_constraint': None},
+   'inbound_nodes': [[['avg_pool', 0, 0, {}]]]}],
+ 'input_layers': [['input_5', 0, 0]],
+ 'output_layers': [['fc1000', 0, 0]]}
